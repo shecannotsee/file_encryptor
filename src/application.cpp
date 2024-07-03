@@ -38,7 +38,7 @@ std::string current_date_time_string(const bool includeMilliseconds = true) {
     ss << "." << std::setw(3) << std::setfill('0') << milliseconds;
   }
 
-  return std::string("[" + ss.str() + "]");
+  return std::string("[" + ss.str() + "]\n");
 }
 
 int main(int argc, char *argv[]) {
@@ -68,13 +68,15 @@ int main(int argc, char *argv[]) {
     case ui::FTXUI: {
       using namespace ftxui;
 
+      std::string filepath;
       std::string filename;
       std::string password;
       int operation = 0;  // 0 for encrypt, 1 for decrypt
-      std::string status_message{current_date_time_string() + "Welcome to the file encryption and decryption system!"};
+      std::string status_message{current_date_time_string() + "Welcome to FileEncryptor!"};
 
       std::vector<std::string> options = {"Encrypt", "Decrypt"};
 
+      auto input_filepath = Input(&filepath, "filepath");
       auto input_filename = Input(&filename, "filename");
       auto input_password = Input(&password, "password");
       auto radiobox       = Radiobox(&options, &operation);
@@ -84,14 +86,14 @@ int main(int argc, char *argv[]) {
       auto button_exec = Button("Execute", [&] {
         if (operation == 0) {
           try {
-            encrypt_file(filename, password);
+            encrypt_file(filepath + filename, password);
             status_message = current_date_time_string() + "encryptFile success:" + filename + ".enc";
           } catch (...) {
             status_message = current_date_time_string() + "encryptFile failed.";
           }
         } else {
           try {
-            decrypt_file(filename, password);
+            decrypt_file(filepath + filename, password);
             status_message = current_date_time_string() + "decryptFile success:" + filename + ".de";
           } catch (...) {
             status_message = current_date_time_string() + "decryptFile failed.";
@@ -100,20 +102,21 @@ int main(int argc, char *argv[]) {
       });
       auto button_exit = Button("Exit", screen.ExitLoopClosure());
 
-      auto renderer = Renderer(Container::Vertical({input_filename, input_password, radiobox,
+      auto renderer = Renderer(Container::Vertical({input_filepath, input_filename, input_password, radiobox,
                                                     Container::Horizontal({button_exec, button_exit})}),
                                [&] {
                                  return vbox({
                                             text("File Encryption/Decryption") | bold | center,
                                             separator(),
-                                            hbox(text("Filename: "), input_filename->Render()),
-                                            hbox(text("Password: "), input_password->Render()),
+                                            hbox(text("File Path: "), input_filepath->Render()),
+                                            hbox(text("File Name: "), input_filename->Render()),
+                                            hbox(text("Password : "), input_password->Render()),
                                             hbox(text("Operation: "), radiobox->Render()),
                                             hbox(button_exec->Render() | center, button_exit->Render() | center),
                                             separator(),
                                             text(status_message) | center,
                                         }) |
-                                        border | size(WIDTH, EQUAL, 50) | size(HEIGHT, EQUAL, 15);
+                                        border | size(WIDTH, EQUAL, 60) | size(HEIGHT, EQUAL, 15);
                                });
 
       screen.Loop(renderer);
