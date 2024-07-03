@@ -15,14 +15,6 @@ set(openssl_link_libs ssl crypto)
 ########################################################################################################################
 
 ########################################################################################################################
-# import nlohmann_json
-set(_nlohmann_json_path "/home/shecannotsee/Desktop/sheer_third_party/libraries/nlohmann_json")
-set(nlohmann_json_include_dir "${_nlohmann_json_path}/include")
-set(nlohmann_json_lib_dir)
-set(nlohmann_json_link_libs)
-########################################################################################################################
-
-########################################################################################################################
 # import FTXUI
 set(_FTXUI_path "/home/shecannotsee/Desktop/sheer_third_party/libraries/FTXUI")
 set(FTXUI_include_dir "${_FTXUI_path}/include")
@@ -33,7 +25,6 @@ set(FTXUI_link_libs ftxui-component ftxui-dom ftxui-screen)
 # include
 include_directories(
         ${openssl_include_dir}
-        ${nlohmann_json_include_dir}
         ${FTXUI_include_dir}
 )
 # lib
