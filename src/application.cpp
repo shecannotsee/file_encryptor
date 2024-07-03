@@ -20,9 +20,9 @@ int main(int argc, char *argv[]) {
       std::string operation = argv[3];
 
       if (operation == "en") {
-        encryptFile(filename, password);
+        encrypt_file(filename, password);
       } else if (operation == "de") {
-        decryptFile(filename, password);
+        decrypt_file(filename, password);
       } else {
         std::cerr << "Invalid operation: " << operation << std::endl;
         return 1;
@@ -47,10 +47,10 @@ int main(int argc, char *argv[]) {
 
       auto button_exec = Button("Execute", [&] {
         if (operation == 0) {
-          encryptFile(filename, password);
+          encrypt_file(filename, password);
           status_message = "encryptFile success:" + filename + ".enc";
         } else {
-          decryptFile(filename, password);
+          decrypt_file(filename, password);
           status_message = "decryptFile success:" + filename + ".de";
         }
       });
@@ -73,9 +73,7 @@ int main(int argc, char *argv[]) {
                                });
 
       screen.Loop(renderer);
-
     }  // case ui::FTXUI
-
     default: {
       break;
     }  // default
