@@ -10,7 +10,7 @@
 #include <vector>
 #include <stdexcept>
 
-inline bool handle_errors() {
+inline void handle_errors() {
   throw std::runtime_error("failed");
   ERR_print_errors_fp(stderr);
   abort();
