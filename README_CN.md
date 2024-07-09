@@ -24,17 +24,17 @@ $ ./FileEncryptor # 接下来运行应用对文件进行加密
 
 ui如下
 
-![ui_display](../FileEncryptor/resource/ui_display.png)
+![ui_display](./resource/ui_display.png)
 
 加密按照下列方法用密码123456进行加密
 
-![en](../FileEncryptor/resource/en.png)
+![en](./resource/en.png)
 
 会发现在当前目录下多出一个`a.txt.enc`文件，该文件就是使用密码加密后的文件。
 
 接下来对`a.txt.enc`文件进行解密，仍然使用密码123456
 
-![de](../FileEncryptor/resource/de.png)
+![de](./resource/de.png)
 
 在最后对文件进行检查
 
