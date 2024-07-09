@@ -24,17 +24,17 @@ $ ./FileEncryptor # Run the application to encrypt the file
 
 The UI looks as follows:
 
-![ui_display](/home/shecannotsee/Desktop/projects/FileEncryptor/resource/ui_display.png)
+![ui_display](./resource/ui_display.png)
 
 To encrypt the file using the password 123456, follow the method shown below:
 
-![en](/home/shecannotsee/Desktop/projects/FileEncryptor/resource/en.png)
+![en](./resource/en.png)
 
 You will find a new file `a.txt.enc` in the current directory, which is the file encrypted with the password.
 
 Next, decrypt the `a.txt.enc` file using the same password, 123456:
 
-![de](/home/shecannotsee/Desktop/projects/FileEncryptor/resource/de.png)
+![de](./resource/de.png)
 
 Finally, check the file:
 
